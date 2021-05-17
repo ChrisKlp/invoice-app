@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import iconPlus from 'assets/icon-plus.svg';
+import media from 'styles/mediaQueries';
 
 export const Button = styled.button<{
   deleteType?: boolean;
@@ -63,23 +64,40 @@ export const Button = styled.button<{
 `;
 
 const StyledButton = styled(Button)`
-  padding: 0.8rem 1.5rem 0.8rem 0.8rem;
+  padding: 0.6rem 1.4rem 0.6rem 0.6rem;
   display: flex;
   align-items: center;
-  gap: 1.6rem;
+
+  span:last-child {
+    display: none;
+  }
+
+  @media (${media.md}) {
+    padding: 0.8rem 1.5rem 0.8rem 0.8rem;
+
+    span:last-child {
+      margin-left: 0.4rem;
+      display: block;
+    }
+  }
 `;
 
 const Icon = styled.span`
+  margin-right: 0.8rem;
   display: grid;
   place-items: center;
   width: 3.2rem;
   height: 3.2rem;
   border-radius: 50%;
   background-color: #fff;
+
+  @media (${media.md}) {
+    margin-right: 1.6rem;
+  }
 `;
 
 type AddButtonProps = {
-  children: React.ReactChild;
+  children: React.ReactNode[];
 };
 
 export const AddButton: React.FC<AddButtonProps> = ({ children, ...props }) => {

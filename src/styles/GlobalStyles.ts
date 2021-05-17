@@ -12,7 +12,6 @@ const GlobalStyle = createGlobalStyle`
     min-width: 28rem;
     font-family: 'Spartan', sans-serif;
     font-size: 1.2rem;
-    min-height: 100vh;
     background-color: ${({ theme }) => theme.body.bg};
   }
 
