@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import iconArrowDown from 'assets/icon-arrow-down.svg';
 import iconCheck from 'assets/icon-check.svg';
 import { useRef, useState } from 'react';
@@ -89,7 +89,7 @@ const Checkbox = styled.span`
   }
 `;
 
-export const Option: React.FC = ({ children }) => {
+const Option: React.FC = ({ children }) => {
   return (
     <OptionWrapper>
       <input type="checkbox" />

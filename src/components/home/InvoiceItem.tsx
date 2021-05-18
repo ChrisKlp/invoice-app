@@ -1,0 +1,120 @@
+import { Heading3, Heading4, Paragraph, Status } from 'components/common';
+import styled from 'styled-components';
+import iconArrowRight from 'assets/icon-arrow-right.svg';
+import Moment from 'react-moment';
+import media from 'styles/mediaQueries';
+
+const Wrapper = styled.a`
+  padding: 2.4rem;
+  height: 13.4rem;
+  display: grid;
+  grid-template:
+    'id client' 1fr
+    'date status' 2.4rem
+    'total status';
+  background: ${({ theme }) => theme.invoice.bg};
+  box-shadow: 0 1rem 1rem -1rem ${({ theme }) => theme.invoice.shadow};
+  border-radius: 0.8rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: border 0.2s;
+
+  &:hover {
+    border: 1px solid ${({ theme }) => theme.invoice.hover};
+  }
+
+  @media (${media.md}) {
+    padding: 0 2.4rem;
+    height: 7.2rem;
+    grid-template-areas: 'id date client total status icon';
+    grid-template-columns: 8.7rem 14rem auto auto 14.4rem 2.4rem;
+    grid-template-rows: 1fr;
+    align-items: center;
+  }
+
+  @media (${media.lg}) {
+    grid-template-columns: 10.3rem 15.1rem auto auto 14.4rem 2.4rem;
+  }
+`;
+
+const Id = styled(Heading4)`
+  grid-area: id;
+
+  span {
+    color: ${({ theme }) => theme.invoice.date};
+  }
+`;
+
+const ClientName = styled(Paragraph)`
+  grid-area: client;
+  justify-self: end;
+
+  @media (${media.md}) {
+    justify-self: unset;
+  }
+`;
+
+const PaymentDue = styled(Paragraph)`
+  color: ${({ theme }) => theme.invoice.date};
+  grid-area: date;
+`;
+
+const Total = styled(Heading3)`
+  grid-area: total;
+
+  @media (${media.md}) {
+    justify-self: end;
+  }
+`;
+
+const StyledStatus = styled(Status)`
+  grid-area: status;
+  place-self: center end;
+`;
+
+const Icon = styled.img`
+  grid-area: icon;
+  display: none;
+
+  @media (${media.md}) {
+    display: block;
+    justify-self: end;
+  }
+`;
+
+type InvoiceItemProps = {
+  id: string;
+  clientName: string;
+  paymentDue: Date | string;
+  total: string;
+  status: string;
+};
+
+const InvoiceItem: React.FC<InvoiceItemProps> = ({
+  id,
+  clientName,
+  paymentDue,
+  total,
+  status,
+}) => {
+  return (
+    <Wrapper>
+      <Id>
+        <span>#</span>
+        {id}
+      </Id>
+      <ClientName>{clientName}</ClientName>
+      <PaymentDue>
+        {`Due `}
+        <Moment format="D MMM YYYY" date={paymentDue} />
+      </PaymentDue>
+      <Total>
+        {total[0]} {total.slice(1)}
+      </Total>
+      <StyledStatus status={status} />
+      <Icon src={iconArrowRight} alt="icon right" />
+    </Wrapper>
+  );
+};
+
+export default InvoiceItem;

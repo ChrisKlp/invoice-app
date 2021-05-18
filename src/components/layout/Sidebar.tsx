@@ -6,7 +6,7 @@ import avatar from 'assets/image-avatar.jpg';
 import media from 'styles/mediaQueries';
 
 const Wrapper = styled.aside`
-  position: absolute;
+  position: sticky;
   top: 0;
   left: 0;
   display: flex;

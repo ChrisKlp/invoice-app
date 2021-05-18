@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import media from 'styles/mediaQueries';
 
 const Wrapper = styled.div`
-  margin-top: 10.4rem;
+  margin: 3.2rem 0;
   display: flex;
   align-items: center;
   gap: 1.8rem;
@@ -16,12 +16,16 @@ const Wrapper = styled.div`
   }
 
   @media (${media.md}) {
-    margin-top: 13.6rem;
+    margin: 5.6rem 0;
     gap: 4rem;
 
     ${Heading1} {
       margin-bottom: 0.8rem;
     }
+  }
+
+  @media (${media.lg}) {
+    margin: 7.2rem 0 6.5rem;
   }
 `;
 

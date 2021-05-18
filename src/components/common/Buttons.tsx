@@ -68,17 +68,8 @@ const StyledButton = styled(Button)`
   display: flex;
   align-items: center;
 
-  span:last-child {
-    display: none;
-  }
-
   @media (${media.md}) {
     padding: 0.8rem 1.5rem 0.8rem 0.8rem;
-
-    span:last-child {
-      margin-left: 0.4rem;
-      display: block;
-    }
   }
 `;
 
@@ -96,17 +87,23 @@ const Icon = styled.span`
   }
 `;
 
-type AddButtonProps = {
-  children: React.ReactNode[];
-};
+const Label = styled.span`
+  span {
+    display: none;
 
-export const AddButton: React.FC<AddButtonProps> = ({ children, ...props }) => {
+    @media (${media.md}) {
+      display: initial;
+    }
+  }
+`;
+
+export const AddButton: React.FC = ({ children, ...props }) => {
   return (
     <StyledButton {...props}>
       <Icon>
         <img src={iconPlus} alt="plus icon" />
       </Icon>
-      {children}
+      <Label>{children}</Label>
     </StyledButton>
   );
 };
