@@ -21,8 +21,8 @@ const colors = {
   light: '#F8F8FB',
   dark: '#141625',
   divider: '#494E6E',
-  shadow: '#48549F25',
-  shadow2: '#48549F10',
+  shadow: 'rgba(72, 84, 159, 0.25)',
+  shadow2: 'rgba(72, 84, 159, 0.10)',
   // light_01: '#00000001',
   // light_10: '#00000010',
   white: '#FFFFFF',
@@ -35,6 +35,7 @@ const light = {
   text: {
     heading: colors.grayishDark,
     paragraph: colors.grayishSlick,
+    invoiceText: colors.grayishSky,
   },
   btn: {
     primary: {
@@ -91,7 +92,6 @@ const light = {
   invoice: {
     bg: colors.white,
     shadow: colors.shadow2,
-    date: colors.grayishSky,
     hover: colors.indigoFaded,
   },
 };

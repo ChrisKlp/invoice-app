@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import iconArrowRight from 'assets/icon-arrow-right.svg';
 import Moment from 'react-moment';
 import media from 'styles/mediaQueries';
+import { Link } from 'react-router-dom';
 
-const Wrapper = styled.a`
+const Wrapper = styled(Link)`
   padding: 2.4rem;
   height: 13.4rem;
   display: grid;
@@ -41,7 +42,7 @@ const Id = styled(Heading4)`
   grid-area: id;
 
   span {
-    color: ${({ theme }) => theme.invoice.date};
+    color: ${({ theme }) => theme.text.invoiceText};
   }
 `;
 
@@ -55,7 +56,7 @@ const ClientName = styled(Paragraph)`
 `;
 
 const PaymentDue = styled(Paragraph)`
-  color: ${({ theme }) => theme.invoice.date};
+  color: ${({ theme }) => theme.text.invoiceText};
   grid-area: date;
 `;
 
@@ -98,8 +99,8 @@ const InvoiceItem: React.FC<InvoiceItemProps> = ({
   status,
 }) => {
   return (
-    <Wrapper>
-      <Id>
+    <Wrapper to={`/invoice/${id.toLowerCase()}`}>
+      <Id as="p">
         <span>#</span>
         {id}
       </Id>
@@ -108,7 +109,7 @@ const InvoiceItem: React.FC<InvoiceItemProps> = ({
         {`Due `}
         <Moment format="D MMM YYYY" date={paymentDue} />
       </PaymentDue>
-      <Total>
+      <Total as="p">
         {total[0]} {total.slice(1)}
       </Total>
       <StyledStatus status={status} />

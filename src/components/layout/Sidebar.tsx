@@ -4,6 +4,7 @@ import iconMoon from 'assets/icon-moon.svg';
 import iconSun from 'assets/icon-sun.svg';
 import avatar from 'assets/image-avatar.jpg';
 import media from 'styles/mediaQueries';
+import { Link } from 'react-router-dom';
 
 const Wrapper = styled.aside`
   position: sticky;
@@ -28,7 +29,7 @@ const Wrapper = styled.aside`
   }
 `;
 
-const LogoWrapper = styled.a`
+const LogoWrapper = styled(Link)`
   position: relative;
   flex-shrink: 0;
   margin-right: auto;
@@ -139,7 +140,7 @@ type SidebarProps = {};
 const Sidebar: React.FC<SidebarProps> = () => {
   return (
     <Wrapper>
-      <LogoWrapper href="/">
+      <LogoWrapper to="/">
         <img src={logo} alt="Logo" />
       </LogoWrapper>
       <ThemeButton>
