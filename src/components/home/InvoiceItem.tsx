@@ -109,9 +109,7 @@ const InvoiceItem: React.FC<InvoiceItemProps> = ({
         {`Due `}
         <Moment format="D MMM YYYY" date={paymentDue} />
       </PaymentDue>
-      <Total as="p">
-        {total[0]} {total.slice(1)}
-      </Total>
+      <Total as="p">{total}</Total>
       <StyledStatus status={status} />
       <Icon src={iconArrowRight} alt="icon right" />
     </Wrapper>

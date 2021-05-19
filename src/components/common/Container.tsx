@@ -8,8 +8,12 @@ const Wrapper = styled.div`
 
 type ContainerProps = {
   children: React.ReactNode;
+  className?: string;
 };
 
-export const Container: React.FC<ContainerProps> = ({ children }) => {
-  return <Wrapper>{children}</Wrapper>;
+export const Container: React.FC<ContainerProps> = ({
+  children,
+  className,
+}) => {
+  return <Wrapper className={className}>{children}</Wrapper>;
 };

@@ -1,7 +1,8 @@
-import { BackLink, Button, Paragraph, Status } from 'components/common';
+import { BackLink, Paragraph, Status } from 'components/common';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import media from 'styles/mediaQueries';
+import InvoiceOptions from './InvoiceOptions';
 
 const Wrapper = styled.header`
   margin: 3.2rem 0 1.6rem;
@@ -30,7 +31,7 @@ const StatusWrapper = styled.div`
   }
 `;
 
-const Navigation = styled.div`
+const Buttons = styled.div`
   display: none;
 
   @media (${media.md}) {
@@ -55,11 +56,9 @@ const InvoiceHeader: React.FC<InvoiceHeaderProps> = ({ data }) => {
           <Paragraph>Status</Paragraph>
           <Status status={data.status} />
         </StatusWrapper>
-        <Navigation>
-          <Button secondary>Edit</Button>
-          <Button deleteType>Delete</Button>
-          <Button>Mark as Paid</Button>
-        </Navigation>
+        <Buttons>
+          <InvoiceOptions />
+        </Buttons>
       </Header>
     </Wrapper>
   );

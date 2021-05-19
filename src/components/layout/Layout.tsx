@@ -1,4 +1,3 @@
-import { Container } from 'components/common';
 import styled from 'styled-components';
 import media from 'styles/mediaQueries';
 import Sidebar from './Sidebar';
@@ -15,7 +14,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <Wrapper>
       <Sidebar />
-      <Container>{children}</Container>
+      {children}
     </Wrapper>
   );
 };

@@ -4,6 +4,15 @@ import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import media from 'styles/mediaQueries';
+import formatMoney from 'utils/formatMoney';
+import InvoiceTable from './InvoiceTable';
+
+const Wrapper = styled.div`
+  padding: 2.4rem;
+  background: ${({ theme }) => theme.invoice.bg};
+  box-shadow: 0 1rem 1rem -1rem ${({ theme }) => theme.invoice.shadow};
+  border-radius: 0.8rem;
+`;
 
 const Text = styled(Paragraph)`
   color: ${({ theme }) => theme.text.invoiceText};
@@ -29,7 +38,8 @@ const Id = styled(Heading4)`
   }
 `;
 
-const Wrapper = styled.div`
+const InformationWrapper = styled.div`
+  margin-bottom: 4rem;
   display: grid;
   grid-template:
     'title title'
@@ -40,11 +50,14 @@ const Wrapper = styled.div`
   gap: 3rem 0;
 
   @media (${media.md}) {
+    margin-bottom: 4.8rem;
     grid-template-areas:
       'title title sender'
       'createdAt client sentTo'
       'paymentDue client sentTo';
     grid-template-columns: 0.9fr 1fr 1fr;
+    grid-template-rows: repeat(3, auto);
+    gap: 0;
   }
 `;
 
@@ -56,6 +69,7 @@ const SenderAddress = styled.div`
   grid-area: sender;
 
   @media (${media.md}) {
+    margin-bottom: 2.1rem;
     justify-self: end;
     text-align: right;
   }
@@ -86,54 +100,55 @@ type InvoiceBodyProps = {
 };
 
 const InvoiceBody: React.FC<InvoiceBodyProps> = ({ data }) => {
+  const mailTo = (e: React.MouseEvent) => {
+    window.location.href = `mailto:${data.clientEmail}`;
+    e.preventDefault();
+  };
+
   return (
     <Wrapper>
-      <Title>
-        <Id as="h1">
-          <span>#</span>
-          {data.id}
-        </Id>
-        <Text>{data.description}</Text>
-      </Title>
-      <SenderAddress>
-        <Text small>{data.senderAddress.street}</Text>
-        <Text small>{data.senderAddress.city}</Text>
-        <Text small>{data.senderAddress.postCode}</Text>
-        <Text small>{data.senderAddress.country}</Text>
-      </SenderAddress>
-      <CreatedAt>
-        <Label>Invoice Date</Label>
-        <BigText>
-          <Moment format="D MMM YYYY" date={data.createdAt} />
-        </BigText>
-      </CreatedAt>
-      <Client>
-        <Label>Bill To</Label>
-        <BigText>{data.clientName}</BigText>
-        <Text small>{data.clientAddress.street}</Text>
-        <Text small>{data.clientAddress.city}</Text>
-        <Text small>{data.clientAddress.postCode}</Text>
-        <Text small>{data.clientAddress.country}</Text>
-      </Client>
-      <PaymentDue>
-        <Label>Payment Due</Label>
-        <BigText>
-          <Moment format="D MMM YYYY" date={data.paymentDue} />
-        </BigText>
-      </PaymentDue>
-      <SentTo>
-        <Label>Sent to</Label>
-        <BigText
-          as={Link}
-          to="#"
-          onClick={(e: React.MouseEvent) => {
-            window.location.href = `mailto:${data.clientEmail}`;
-            e.preventDefault();
-          }}
-        >
-          {data.clientEmail}
-        </BigText>
-      </SentTo>
+      <InformationWrapper>
+        <Title>
+          <Id as="h1">
+            <span>#</span>
+            {data.id}
+          </Id>
+          <Text>{data.description}</Text>
+        </Title>
+        <SenderAddress>
+          <Text small>{data.senderAddress.street}</Text>
+          <Text small>{data.senderAddress.city}</Text>
+          <Text small>{data.senderAddress.postCode}</Text>
+          <Text small>{data.senderAddress.country}</Text>
+        </SenderAddress>
+        <CreatedAt>
+          <Label>Invoice Date</Label>
+          <BigText>
+            <Moment format="D MMM YYYY" date={data.createdAt} />
+          </BigText>
+        </CreatedAt>
+        <Client>
+          <Label>Bill To</Label>
+          <BigText>{data.clientName}</BigText>
+          <Text small>{data.clientAddress.street}</Text>
+          <Text small>{data.clientAddress.city}</Text>
+          <Text small>{data.clientAddress.postCode}</Text>
+          <Text small>{data.clientAddress.country}</Text>
+        </Client>
+        <PaymentDue>
+          <Label>Payment Due</Label>
+          <BigText>
+            <Moment format="D MMM YYYY" date={data.paymentDue} />
+          </BigText>
+        </PaymentDue>
+        <SentTo>
+          <Label>Sent to</Label>
+          <BigText as={Link} to="#" onClick={mailTo}>
+            {data.clientEmail}
+          </BigText>
+        </SentTo>
+      </InformationWrapper>
+      <InvoiceTable items={data.items} total={formatMoney(data.total)} />
     </Wrapper>
   );
 };

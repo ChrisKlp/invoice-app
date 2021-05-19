@@ -36,6 +36,7 @@ const light = {
     heading: colors.grayishDark,
     paragraph: colors.grayishSlick,
     invoiceText: colors.grayishSky,
+    invoiceTotal: colors.white,
   },
   btn: {
     primary: {
@@ -91,6 +92,8 @@ const light = {
   },
   invoice: {
     bg: colors.white,
+    bg2: colors.grayishLight,
+    bg3: colors.dim,
     shadow: colors.shadow2,
     hover: colors.indigoFaded,
   },
