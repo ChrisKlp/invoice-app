@@ -1,5 +1,5 @@
 import { Heading4, Paragraph } from 'components/common';
-import React from 'react';
+import React, { useCallback } from 'react';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -100,10 +100,13 @@ type InvoiceBodyProps = {
 };
 
 const InvoiceBody: React.FC<InvoiceBodyProps> = ({ data }) => {
-  const mailTo = (e: React.MouseEvent) => {
-    window.location.href = `mailto:${data.clientEmail}`;
-    e.preventDefault();
-  };
+  const mailTo = useCallback(
+    (e: React.MouseEvent) => {
+      window.location.href = `mailto:${data.clientEmail}`;
+      e.preventDefault();
+    },
+    [data.clientEmail]
+  );
 
   return (
     <Wrapper>

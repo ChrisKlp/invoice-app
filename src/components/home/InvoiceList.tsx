@@ -1,5 +1,5 @@
+import { InvoiceState } from 'redux/invoicesSlice';
 import styled from 'styled-components';
-import data from 'data/data.json';
 import formatMoney from 'utils/formatMoney';
 import InvoiceItem from './InvoiceItem';
 
@@ -9,9 +9,11 @@ const Wrapper = styled.ul`
   gap: 1.6rem;
 `;
 
-type InvoiceListProps = {};
+type InvoiceListProps = {
+  data: InvoiceState;
+};
 
-const InvoiceList: React.FC<InvoiceListProps> = () => {
+const InvoiceList: React.FC<InvoiceListProps> = ({ data }) => {
   return (
     <Wrapper>
       {data.map(({ id, clientName, paymentDue, total, status }) => (

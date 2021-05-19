@@ -2,6 +2,7 @@ import { AddButton } from 'components/common/Buttons';
 import { Dropdown } from 'components/common/Dropdown';
 import { Heading1 } from 'components/common/Headings';
 import { Paragraph } from 'components/common/Typography';
+import { InvoiceState } from 'redux/invoicesSlice';
 import styled from 'styled-components';
 import media from 'styles/mediaQueries';
 
@@ -33,14 +34,16 @@ const HeaderWrapper = styled.div`
   flex-grow: 1;
 `;
 
-type HeaderProps = {};
+type HeaderProps = {
+  data: InvoiceState;
+};
 
-const Header: React.FC<HeaderProps> = () => {
+const Header: React.FC<HeaderProps> = ({ data }) => {
   return (
     <Wrapper>
       <HeaderWrapper>
         <Heading1>Invoices</Heading1>
-        <Paragraph>7 invoces</Paragraph>
+        <Paragraph>{data.length} invoces</Paragraph>
       </HeaderWrapper>
       <Dropdown />
       <AddButton>
