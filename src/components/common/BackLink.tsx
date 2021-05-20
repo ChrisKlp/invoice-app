@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import iconArrowLeft from 'assets/icon-arrow-left.svg';
-import { Paragraph } from './Typography';
+import { Paragraph } from 'components/common';
 
 const Wrapper = styled.div`
   display: flex;
@@ -13,7 +13,7 @@ const Text = styled(Paragraph)`
   color: ${({ theme }) => theme.text.heading};
 `;
 
-export const BackLink: React.FC = ({ children }) => {
+const BackLink: React.FC = ({ children }) => {
   return (
     <Wrapper>
       <img src={iconArrowLeft} alt="Icon arrow left" />
@@ -21,3 +21,5 @@ export const BackLink: React.FC = ({ children }) => {
     </Wrapper>
   );
 };
+
+export default BackLink;

@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export const Paragraph = styled.p<{ small?: boolean }>`
+const Paragraph = styled.p<{ small?: boolean }>`
   font-weight: 500;
   font-size: 1.2rem;
   line-height: 1.5rem;
@@ -15,3 +15,5 @@ export const Paragraph = styled.p<{ small?: boolean }>`
       letter-spacing: -0.023rem;
     `};
 `;
+
+export default Paragraph;

@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Paragraph } from './Typography';
+import Paragraph from './Typography';
 
 const Point = styled.div`
   width: 0.8rem;
@@ -70,7 +70,7 @@ type InvoiceStatusProps = {
   className?: string;
 };
 
-export const Status: React.FC<InvoiceStatusProps> = ({ status, className }) => {
+const Status: React.FC<InvoiceStatusProps> = ({ status, className }) => {
   return (
     <Wrapper status={status} className={className}>
       <Point />
@@ -78,3 +78,5 @@ export const Status: React.FC<InvoiceStatusProps> = ({ status, className }) => {
     </Wrapper>
   );
 };
+
+export default Status;
