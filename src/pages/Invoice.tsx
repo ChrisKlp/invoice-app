@@ -2,17 +2,18 @@ import { Container } from 'components/common';
 import { InvoiceBody, InvoiceFooter, InvoiceHeader } from 'components/invoice';
 import useMedia from 'hooks/useMedia';
 import { useParams } from 'react-router-dom';
-import { useAppSelector } from 'redux/hooks';
+import { useAppSelector } from 'store/hooks';
 import media from 'styles/mediaQueries';
 
-type InvoiceProps = {};
-
-const Invoice: React.FC<InvoiceProps> = () => {
+const Invoice: React.FC = () => {
   const { id }: { id: string } = useParams();
   const isTablet = useMedia(`${media.md}`);
-  const data = useAppSelector((state) => state.invoices);
+  const invoices = useAppSelector((state) => state.invoices);
 
-  const invoice = data && data.find((item) => item.id === id.toUpperCase());
+  const invoice =
+    invoices && invoices.find((item) => item.id === id.toUpperCase());
+
+  if (!invoice) return null;
 
   return (
     <>
@@ -20,7 +21,7 @@ const Invoice: React.FC<InvoiceProps> = () => {
         <InvoiceHeader data={invoice} />
         <InvoiceBody data={invoice} />
       </Container>
-      {!isTablet && <InvoiceFooter data={invoice} />}
+      {!isTablet && <InvoiceFooter />}
     </>
   );
 };

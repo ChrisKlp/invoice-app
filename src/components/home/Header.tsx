@@ -1,8 +1,7 @@
-import { AddButton } from 'components/common/Buttons';
-import { Dropdown } from 'components/common/Dropdown';
-import { Heading1 } from 'components/common/Headings';
-import { Paragraph } from 'components/common/Typography';
-import { InvoiceState } from 'redux/invoicesSlice';
+import { AddButton, Dropdown, Heading1, Paragraph } from 'components/common';
+import { useCallback } from 'react';
+import { changeFilter, filterList } from 'store/reducers/filters';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
 import styled from 'styled-components';
 import media from 'styles/mediaQueries';
 
@@ -35,17 +34,24 @@ const HeaderWrapper = styled.div`
 `;
 
 type HeaderProps = {
-  data: InvoiceState;
+  invoiceLength: number;
 };
 
-const Header: React.FC<HeaderProps> = ({ data }) => {
+const Header: React.FC<HeaderProps> = ({ invoiceLength }) => {
+  const filters = useAppSelector(filterList);
+  const dispatch = useAppDispatch();
+  const onChange = useCallback(
+    (name: string) => dispatch(changeFilter(name)),
+    [dispatch]
+  );
+
   return (
     <Wrapper>
       <HeaderWrapper>
         <Heading1>Invoices</Heading1>
-        <Paragraph>{data.length} invoces</Paragraph>
+        <Paragraph>{invoiceLength} invoces</Paragraph>
       </HeaderWrapper>
-      <Dropdown />
+      <Dropdown options={filters} onChange={onChange} />
       <AddButton>
         New <span>Invoice</span>
       </AddButton>

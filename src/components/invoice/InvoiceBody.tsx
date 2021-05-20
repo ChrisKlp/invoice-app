@@ -2,6 +2,7 @@ import { Heading4, Paragraph } from 'components/common';
 import React, { useCallback } from 'react';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
+import { TInvoice } from 'store/types';
 import styled from 'styled-components';
 import media from 'styles/mediaQueries';
 import formatMoney from 'utils/formatMoney';
@@ -96,7 +97,7 @@ const SentTo = styled.div`
 `;
 
 type InvoiceBodyProps = {
-  data: any;
+  data: TInvoice;
 };
 
 const InvoiceBody: React.FC<InvoiceBodyProps> = ({ data }) => {

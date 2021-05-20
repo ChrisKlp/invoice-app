@@ -16,11 +16,7 @@ const Wrapper = styled.div`
   }
 `;
 
-type InvoiceFooterProps = {
-  data: any;
-};
-
-const InvoiceFooter: React.FC<InvoiceFooterProps> = ({ data }) => {
+const InvoiceFooter: React.FC = () => {
   return (
     <Wrapper>
       <Container>

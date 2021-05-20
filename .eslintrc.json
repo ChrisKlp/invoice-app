@@ -29,6 +29,7 @@
     "react/prop-types": "off",
     "@typescript-eslint/ban-types": "warn",
     "@typescript-eslint/no-empty-interface": "off",
-    "react/jsx-props-no-spreading": "off"
+    "react/jsx-props-no-spreading": "off",
+    "no-param-reassign": "off"
   }
 }

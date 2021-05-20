@@ -1,5 +1,6 @@
 import { BackLink, Paragraph, Status } from 'components/common';
 import { Link } from 'react-router-dom';
+import { TInvoice } from 'store/types';
 import styled from 'styled-components';
 import media from 'styles/mediaQueries';
 import InvoiceOptions from './InvoiceOptions';
@@ -42,7 +43,7 @@ const Buttons = styled.div`
 `;
 
 type InvoiceHeaderProps = {
-  data: any;
+  data: TInvoice;
 };
 
 const InvoiceHeader: React.FC<InvoiceHeaderProps> = ({ data }) => {

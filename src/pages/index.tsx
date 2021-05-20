@@ -1,7 +1,7 @@
 import Layout from 'components/layout/Layout';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { store } from 'redux/store';
+import { store } from 'store/store';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyle from 'styles/GlobalStyles';
 import theme from 'styles/theme';

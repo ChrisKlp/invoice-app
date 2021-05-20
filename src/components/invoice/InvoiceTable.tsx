@@ -1,5 +1,6 @@
 import { Heading4 as Text, Paragraph } from 'components/common';
 import useMedia from 'hooks/useMedia';
+import { TInvoiceItem } from 'store/types';
 import styled, { css } from 'styled-components';
 import media from 'styles/mediaQueries';
 import formatMoney from 'utils/formatMoney';
@@ -119,7 +120,7 @@ const TotalAmount = styled.p`
 `;
 
 type InvoiceTableProps = {
-  items: any;
+  items: TInvoiceItem[];
   total: string;
 };
 

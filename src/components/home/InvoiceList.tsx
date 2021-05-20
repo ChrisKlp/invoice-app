@@ -1,4 +1,4 @@
-import { InvoiceState } from 'redux/invoicesSlice';
+import { TInvoice } from 'store/types';
 import styled from 'styled-components';
 import formatMoney from 'utils/formatMoney';
 import InvoiceItem from './InvoiceItem';
@@ -10,7 +10,7 @@ const Wrapper = styled.ul`
 `;
 
 type InvoiceListProps = {
-  data: InvoiceState;
+  data: TInvoice[];
 };
 
 const InvoiceList: React.FC<InvoiceListProps> = ({ data }) => {
