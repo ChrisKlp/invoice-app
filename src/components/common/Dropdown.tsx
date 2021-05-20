@@ -1,9 +1,10 @@
+import { PayloadAction } from '@reduxjs/toolkit';
 import styled from 'styled-components';
-import iconArrowDown from 'assets/icon-arrow-down.svg';
-import iconCheck from 'assets/icon-check.svg';
+import { Checkbox, Paragraph } from 'components/common';
+import useOnClickOutside from 'hooks/useOnClickOutside';
 import { useRef, useState } from 'react';
 import media from 'styles/mediaQueries';
-import useOnClickOutside from 'hooks/useOnClickOutside';
+import iconArrowDown from 'assets/icon-arrow-down.svg';
 
 const Wrapper = styled.div`
   position: relative;
@@ -21,11 +22,8 @@ const Header = styled.button`
   background: none;
 `;
 
-const Label = styled.span`
+const Label = styled(Paragraph)`
   font-weight: 700;
-  font-size: 1.2rem;
-  line-height: 1.5rem;
-  letter-spacing: -0.025rem;
   color: ${({ theme }) => theme.text.heading};
 
   span {
@@ -52,65 +50,21 @@ const Options = styled.div`
   box-shadow: 0 1rem 2rem ${({ theme }) => theme.dropdown.shadow};
   border-radius: 0.8rem;
 `;
-
-const OptionWrapper = styled.label`
-  display: flex;
-  align-items: center;
-  gap: 1.3rem;
-  cursor: pointer;
-
-  input {
-    display: none;
-  }
-`;
-
-const Checkbox = styled.span`
-  display: grid;
-  place-items: center;
-  background-color: ${({ theme }) => theme.checkbox.bg};
-  border-radius: 0.2rem;
-  width: 1.6rem;
-  height: 1.6rem;
-
-  img {
-    opacity: 0;
-  }
-
-  ${OptionWrapper}:hover & {
-    border: 1px solid ${({ theme }) => theme.checkbox.active};
-  }
-
-  ${OptionWrapper} input:checked + & {
-    background-color: ${({ theme }) => theme.checkbox.active};
-
-    img {
-      opacity: 1;
-    }
-  }
-`;
-
-const Option: React.FC = ({ children }) => {
-  return (
-    <OptionWrapper>
-      <input type="checkbox" />
-      <Checkbox>
-        <img src={iconCheck} alt="check icon" />
-      </Checkbox>
-      <Label>{children}</Label>
-    </OptionWrapper>
-  );
+type DropdownProps = {
+  options: [status: string, value: boolean][];
+  onChange: (name: string) => PayloadAction<string>;
 };
 
-type DropdownProps = {};
-
-export const Dropdown: React.FC<DropdownProps> = () => {
+const Dropdown: React.FC<DropdownProps> = ({ options, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   useOnClickOutside(dropdownRef, () => setIsOpen(false));
 
+  const handleClick = () => setIsOpen((prev) => !prev);
+
   return (
     <Wrapper ref={dropdownRef}>
-      <Header onClick={() => setIsOpen((prev) => !prev)}>
+      <Header onClick={handleClick}>
         <Label>
           Filter <span>by status</span>
         </Label>
@@ -118,11 +72,18 @@ export const Dropdown: React.FC<DropdownProps> = () => {
       </Header>
       {isOpen && (
         <Options>
-          <Option>Draft</Option>
-          <Option>Pending</Option>
-          <Option>Paid</Option>
+          {options.map(([name, checked]: [name: string, checked: boolean]) => (
+            <Checkbox
+              key={name}
+              checked={checked}
+              name={name}
+              onChange={() => onChange(name)}
+            />
+          ))}
         </Options>
       )}
     </Wrapper>
   );
 };
+
+export default Dropdown;
