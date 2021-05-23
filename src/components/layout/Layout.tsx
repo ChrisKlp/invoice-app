@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import media from 'styles/mediaQueries';
-import Sidebar from './Sidebar';
+import Sidebar from 'components/layout/Sidebar';
 
 const Wrapper = styled.div`
   @media (${media.lg}) {

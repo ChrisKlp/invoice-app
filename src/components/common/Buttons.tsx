@@ -8,7 +8,7 @@ export const Button = styled.button<{
   secondary?: boolean;
   wide?: boolean;
 }>`
-  padding: 1.7rem 2.4rem 1.6rem;
+  padding: 1.6rem 1.4rem;
   width: ${({ wide }) => (wide ? '100%' : 'initial')};
   font-weight: 700;
   font-size: 1.2rem;
@@ -25,6 +25,10 @@ export const Button = styled.button<{
   &:hover,
   &:focus {
     background-color: ${({ theme }) => theme.btn.primary.hover};
+  }
+
+  @media (${media.sm}) {
+    padding: 1.7rem 2.4rem 1.6rem;
   }
 
   ${({ deleteType }) =>

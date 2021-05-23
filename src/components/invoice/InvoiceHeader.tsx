@@ -7,6 +7,14 @@ import InvoiceOptions from './InvoiceOptions';
 
 const Wrapper = styled.header`
   margin: 3.2rem 0 1.6rem;
+
+  @media (${media.md}) {
+    margin: 4.8rem 0 2.4rem;
+  }
+
+  @media (${media.lg}) {
+    margin: 6.4rem 0 2.4rem;
+  }
 `;
 
 const Header = styled.div`

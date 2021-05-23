@@ -1,10 +1,14 @@
 import styled, { css } from 'styled-components';
 
-const Paragraph = styled.p<{ small?: boolean }>`
+export const paragraphStyles = css`
   font-weight: 500;
   font-size: 1.2rem;
   line-height: 1.5rem;
   letter-spacing: -0.025rem;
+`;
+
+const Paragraph = styled.p<{ small?: boolean }>`
+  ${paragraphStyles}
   color: ${({ theme }) => theme.text.paragraph};
 
   ${({ small }) =>

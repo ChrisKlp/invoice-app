@@ -15,6 +15,7 @@ const Wrapper = styled.aside`
   width: 100%;
   height: 7.2rem;
   background-color: ${({ theme }) => theme.sidebar.bg};
+  z-index: 999;
 
   @media (${media.md}) {
     height: 8rem;

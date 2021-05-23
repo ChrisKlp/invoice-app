@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import iconArrowLeft from 'assets/icon-arrow-left.svg';
 import { Paragraph } from 'components/common';
 
-const Wrapper = styled.div`
+const Wrapper = styled.span`
   display: flex;
   gap: 2.2rem;
   align-items: center;
@@ -17,7 +17,7 @@ const BackLink: React.FC = ({ children }) => {
   return (
     <Wrapper>
       <img src={iconArrowLeft} alt="Icon arrow left" />
-      <Text>{children}</Text>
+      <Text as="span">{children}</Text>
     </Wrapper>
   );
 };

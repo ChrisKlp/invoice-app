@@ -34,9 +34,12 @@ const light = {
   },
   text: {
     heading: colors.grayishDark,
+    subheading: colors.grayishSlick,
     paragraph: colors.grayishSlick,
     invoiceText: colors.grayishSky,
     invoiceTotal: colors.white,
+    input: colors.grayishDark,
+    legend: colors.indigo,
   },
   btn: {
     primary: {
@@ -68,14 +71,6 @@ const light = {
     primary: colors.indigo,
     secondary: colors.indigoFaded,
   },
-  dropdown: {
-    bg: colors.white,
-    shadow: colors.shadow,
-  },
-  checkbox: {
-    bg: colors.grayish,
-    active: colors.indigo,
-  },
   status: {
     paid: {
       bg: colors.greenFaded,
@@ -96,6 +91,19 @@ const light = {
     bg3: colors.dim,
     shadow: colors.shadow2,
     hover: colors.indigoFaded,
+  },
+  dropdown: {
+    bg: colors.white,
+    shadow: colors.shadow,
+  },
+  checkbox: {
+    bg: colors.grayish,
+    active: colors.indigo,
+  },
+  form: {
+    border: colors.grayish,
+    borderActive: colors.indigo,
+    error: colors.red,
   },
 };
 
