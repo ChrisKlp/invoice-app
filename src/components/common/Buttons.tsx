@@ -101,7 +101,10 @@ const Label = styled.span`
   }
 `;
 
-export const AddButton: React.FC = ({ children, ...props }) => {
+interface AddButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
+
+export const AddButton: React.FC<AddButtonProps> = ({ children, ...props }) => {
   return (
     <StyledButton {...props}>
       <Icon>

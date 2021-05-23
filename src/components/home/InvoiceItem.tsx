@@ -1,7 +1,7 @@
 import { Heading3, Heading4, Paragraph, Status } from 'components/common';
 import styled from 'styled-components';
 import iconArrowRight from 'assets/icon-arrow-right.svg';
-import Moment from 'react-moment';
+import moment from 'moment';
 import media from 'styles/mediaQueries';
 import { Link } from 'react-router-dom';
 
@@ -107,7 +107,7 @@ const InvoiceItem: React.FC<InvoiceItemProps> = ({
       <ClientName>{clientName}</ClientName>
       <PaymentDue>
         {`Due `}
-        <Moment format="D MMM YYYY" date={paymentDue} />
+        {moment(paymentDue).format('D MMM YYYY')}
       </PaymentDue>
       <Total as="p">{total}</Total>
       <StyledStatus status={status} />

@@ -1,9 +1,10 @@
-import { AddButton, Dropdown, Heading1, Paragraph } from 'components/common';
+import { AddButton, Heading1, Paragraph } from 'components/common';
 import { useCallback } from 'react';
 import { changeFilter, filterList } from 'store/reducers/filters';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import styled from 'styled-components';
 import media from 'styles/mediaQueries';
+import Dropdown from 'components/home/Dropdown';
 
 const Wrapper = styled.div`
   margin: 3.2rem 0;
@@ -35,9 +36,10 @@ const HeaderWrapper = styled.div`
 
 type HeaderProps = {
   invoiceLength: number;
+  openForm: () => void;
 };
 
-const Header: React.FC<HeaderProps> = ({ invoiceLength }) => {
+const Header: React.FC<HeaderProps> = ({ invoiceLength, openForm }) => {
   const filters = useAppSelector(filterList);
   const dispatch = useAppDispatch();
   const onChange = useCallback(
@@ -52,7 +54,7 @@ const Header: React.FC<HeaderProps> = ({ invoiceLength }) => {
         <Paragraph>{invoiceLength} invoces</Paragraph>
       </HeaderWrapper>
       <Dropdown options={filters} onChange={onChange} />
-      <AddButton>
+      <AddButton onClick={openForm}>
         New <span>Invoice</span>
       </AddButton>
     </Wrapper>

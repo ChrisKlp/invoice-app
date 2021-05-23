@@ -1,6 +1,6 @@
 import { Heading4, Paragraph } from 'components/common';
 import React, { useCallback } from 'react';
-import Moment from 'react-moment';
+import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { TInvoice } from 'store/types';
 import styled from 'styled-components';
@@ -127,9 +127,7 @@ const InvoiceBody: React.FC<InvoiceBodyProps> = ({ data }) => {
         </SenderAddress>
         <CreatedAt>
           <Label>Invoice Date</Label>
-          <BigText>
-            <Moment format="D MMM YYYY" date={data.createdAt} />
-          </BigText>
+          <BigText>{moment(data.createdAt).format('D MMM YYYY')}</BigText>
         </CreatedAt>
         <Client>
           <Label>Bill To</Label>
@@ -141,9 +139,7 @@ const InvoiceBody: React.FC<InvoiceBodyProps> = ({ data }) => {
         </Client>
         <PaymentDue>
           <Label>Payment Due</Label>
-          <BigText>
-            <Moment format="D MMM YYYY" date={data.paymentDue} />
-          </BigText>
+          <BigText>{moment(data.paymentDue).format('D MMM YYYY')}</BigText>
         </PaymentDue>
         <SentTo>
           <Label>Sent to</Label>

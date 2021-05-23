@@ -10,6 +10,7 @@ const Wrapper = styled.div`
   margin-top: 7.2rem;
   height: calc(100vh - 7.2rem);
   width: 100%;
+  max-width: 61.1rem;
   display: grid;
   grid-template-rows: 1fr auto;
   background: ${({ theme }) => theme.invoice.bg};
@@ -17,7 +18,6 @@ const Wrapper = styled.div`
 
   @media (${media.md}) {
     margin-top: 8rem;
-    max-width: 61.1rem;
     border-radius: 0 2rem 2rem 0;
     height: calc(100vh - 8rem);
   }
@@ -31,14 +31,13 @@ const Wrapper = styled.div`
 `;
 
 const BackButton = styled.button`
-  margin: 3.2rem 0 2.4rem;
+  margin: 3.2rem 5% 2.4rem;
   display: block;
   cursor: pointer;
 `;
 
 const StyledContainer = styled.div`
-  margin: 0 auto;
-  width: 90%;
+  width: 100%;
   display: grid;
   grid-template-rows: auto 1fr;
   overflow: hidden;

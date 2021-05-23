@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import data from 'store/data.json';
 import type { TInvoice } from 'store/types';
 import { RootState } from '../store';
@@ -8,8 +8,14 @@ const initialState: TInvoice[] = data;
 export const invoicesSlice = createSlice({
   name: 'invoices',
   initialState,
-  reducers: {},
+  reducers: {
+    createInvoice: (state, action: PayloadAction<TInvoice>) => {
+      state.push(action.payload);
+    },
+  },
 });
+
+export const { createInvoice } = invoicesSlice.actions;
 
 export const filteredInvoices = (state: RootState): TInvoice[] => {
   const activeFilters = Object.entries(state.filters)
