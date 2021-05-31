@@ -26,9 +26,7 @@ const itemValues = {
   total: '',
 };
 
-type ItemsProps = {};
-
-const Items: React.FC<ItemsProps> = () => {
+const Items: React.FC = () => {
   return (
     <Wrapper>
       <Heading>Item List</Heading>

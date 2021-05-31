@@ -32,11 +32,11 @@ const Invoice: React.FC = () => {
     <>
       <Container>
         <InvoiceHeader
-          data={invoice}
+          invoice={invoice}
           openForm={handleOpen}
           openModal={openModal}
         />
-        <InvoiceBody data={invoice} />
+        <InvoiceBody invoice={invoice} />
       </Container>
       {isModalOpen && (
         <ConfirmModal invoiceId={invoice.id} closeModal={closeModal} />
@@ -46,8 +46,8 @@ const Invoice: React.FC = () => {
       )}
       {!isTablet && (
         <InvoiceFooter
-          data={invoice}
-          openForm={handleClose}
+          invoice={invoice}
+          openForm={handleOpen}
           openModal={openModal}
         />
       )}

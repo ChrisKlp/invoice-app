@@ -66,7 +66,7 @@ const Form: React.FC<FormProps> = ({ children, heading, onSubmit }) => {
           {!!submitCount && errors && (
             <ErrorMessage>- All fields must be added</ErrorMessage>
           )}
-          {typeof errors.items === 'string' && (
+          {!!submitCount && typeof errors.items === 'string' && (
             <ErrorMessage>{errors.items}</ErrorMessage>
           )}
         </>

@@ -18,13 +18,13 @@ const Wrapper = styled.div`
 `;
 
 type InvoiceFooterProps = {
-  data: TInvoice;
+  invoice: TInvoice;
   openForm: () => void;
   openModal: () => void;
 };
 
 const InvoiceFooter: React.FC<InvoiceFooterProps> = ({
-  data,
+  invoice,
   openForm,
   openModal,
 }) => {
@@ -32,7 +32,7 @@ const InvoiceFooter: React.FC<InvoiceFooterProps> = ({
     <Wrapper>
       <Container>
         <InvoiceOptions
-          invoiceId={data.id.toUpperCase()}
+          invoice={invoice}
           openForm={openForm}
           openModal={openModal}
         />

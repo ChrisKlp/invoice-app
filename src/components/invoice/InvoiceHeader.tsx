@@ -51,13 +51,13 @@ const Buttons = styled.div`
 `;
 
 type InvoiceHeaderProps = {
-  data: TInvoice;
+  invoice: TInvoice;
   openForm: () => void;
   openModal: () => void;
 };
 
 const InvoiceHeader: React.FC<InvoiceHeaderProps> = ({
-  data,
+  invoice,
   openForm,
   openModal,
 }) => {
@@ -69,11 +69,11 @@ const InvoiceHeader: React.FC<InvoiceHeaderProps> = ({
       <Header>
         <StatusWrapper>
           <Paragraph>Status</Paragraph>
-          <Status status={data.status} />
+          <Status status={invoice.status} />
         </StatusWrapper>
         <Buttons>
           <InvoiceOptions
-            invoiceId={data.id.toUpperCase()}
+            invoice={invoice}
             openForm={openForm}
             openModal={openModal}
           />

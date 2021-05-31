@@ -101,16 +101,16 @@ const SentTo = styled.div`
 `;
 
 type InvoiceBodyProps = {
-  data: TInvoice;
+  invoice: TInvoice;
 };
 
-const InvoiceBody: React.FC<InvoiceBodyProps> = ({ data }) => {
+const InvoiceBody: React.FC<InvoiceBodyProps> = ({ invoice }) => {
   const mailTo = useCallback(
     (e: React.MouseEvent) => {
-      window.location.href = `mailto:${data.clientEmail}`;
+      window.location.href = `mailto:${invoice.clientEmail}`;
       e.preventDefault();
     },
-    [data.clientEmail]
+    [invoice.clientEmail]
   );
 
   return (
@@ -119,40 +119,40 @@ const InvoiceBody: React.FC<InvoiceBodyProps> = ({ data }) => {
         <Title>
           <Id as="h1">
             <span>#</span>
-            {data.id}
+            {invoice.id}
           </Id>
-          <Text>{data.description}</Text>
+          <Text>{invoice.description}</Text>
         </Title>
         <SenderAddress>
-          <Text small>{data.senderAddress.street}</Text>
-          <Text small>{data.senderAddress.city}</Text>
-          <Text small>{data.senderAddress.postCode}</Text>
-          <Text small>{data.senderAddress.country}</Text>
+          <Text small>{invoice.senderAddress.street}</Text>
+          <Text small>{invoice.senderAddress.city}</Text>
+          <Text small>{invoice.senderAddress.postCode}</Text>
+          <Text small>{invoice.senderAddress.country}</Text>
         </SenderAddress>
         <CreatedAt>
           <Label>Invoice Date</Label>
-          <BigText>{moment(data.createdAt).format('D MMM YYYY')}</BigText>
+          <BigText>{moment(invoice.createdAt).format('D MMM YYYY')}</BigText>
         </CreatedAt>
         <Client>
           <Label>Bill To</Label>
-          <BigText>{data.clientName}</BigText>
-          <Text small>{data.clientAddress.street}</Text>
-          <Text small>{data.clientAddress.city}</Text>
-          <Text small>{data.clientAddress.postCode}</Text>
-          <Text small>{data.clientAddress.country}</Text>
+          <BigText>{invoice.clientName}</BigText>
+          <Text small>{invoice.clientAddress.street}</Text>
+          <Text small>{invoice.clientAddress.city}</Text>
+          <Text small>{invoice.clientAddress.postCode}</Text>
+          <Text small>{invoice.clientAddress.country}</Text>
         </Client>
         <PaymentDue>
           <Label>Payment Due</Label>
-          <BigText>{moment(data.paymentDue).format('D MMM YYYY')}</BigText>
+          <BigText>{moment(invoice.paymentDue).format('D MMM YYYY')}</BigText>
         </PaymentDue>
         <SentTo>
           <Label>Sent to</Label>
           <BigText as={Link} to="#" onClick={mailTo}>
-            {data.clientEmail}
+            {invoice.clientEmail}
           </BigText>
         </SentTo>
       </InformationWrapper>
-      <InvoiceTable items={data.items} total={formatMoney(data.total)} />
+      <InvoiceTable items={invoice.items} total={formatMoney(invoice.total)} />
     </Wrapper>
   );
 };

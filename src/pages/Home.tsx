@@ -1,7 +1,6 @@
 import { Container } from 'components/common';
 import { CreateInvoice } from 'components/form';
-import Header from 'components/home/Header';
-import InvoiceList from 'components/home/InvoiceList';
+import { Header, InvoiceList, NoInvoices } from 'components/home';
 import useOpen from 'hooks/useOpen';
 import { useAppSelector } from 'store/hooks';
 import { filteredInvoices } from 'store/reducers/invoices';
@@ -14,6 +13,7 @@ const Home: React.FC = () => {
     <Container>
       <Header invoiceLength={invoices.length} openForm={handleOpen} />
       <InvoiceList data={invoices} />
+      {!invoices.length && <NoInvoices />}
       {isOpen && <CreateInvoice closeForm={handleClose} />}
     </Container>
   );

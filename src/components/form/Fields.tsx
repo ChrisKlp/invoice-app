@@ -38,9 +38,7 @@ const BillTo = styled.div`
   }
 `;
 
-type FieldsProps = {};
-
-const Fields: React.FC<FieldsProps> = () => {
+const Fields: React.FC = () => {
   return (
     <>
       <Fieldset>

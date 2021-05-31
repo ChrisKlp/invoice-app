@@ -136,9 +136,7 @@ const Avatar = styled.button`
   }
 `;
 
-type SidebarProps = {};
-
-const Sidebar: React.FC<SidebarProps> = () => {
+const Sidebar: React.FC = () => {
   return (
     <Wrapper>
       <LogoWrapper to="/">
