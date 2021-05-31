@@ -57,7 +57,7 @@ const InformationWrapper = styled.div`
       'createdAt client sentTo'
       'paymentDue client sentTo';
     grid-template-columns: 0.9fr 1fr 1fr;
-    grid-template-rows: repeat(3, auto);
+    grid-template-rows: 9.1rem auto auto;
     gap: 0;
   }
 `;
@@ -78,6 +78,10 @@ const SenderAddress = styled.div`
 
 const CreatedAt = styled.div`
   grid-area: createdAt;
+
+  @media (${media.md}) {
+    margin-bottom: 3.2rem;
+  }
 `;
 
 const Client = styled.div`

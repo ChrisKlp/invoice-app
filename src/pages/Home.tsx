@@ -2,22 +2,19 @@ import { Container } from 'components/common';
 import { CreateInvoice } from 'components/form';
 import Header from 'components/home/Header';
 import InvoiceList from 'components/home/InvoiceList';
-import { useState } from 'react';
+import useOpen from 'hooks/useOpen';
 import { useAppSelector } from 'store/hooks';
 import { filteredInvoices } from 'store/reducers/invoices';
 
 const Home: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const invoices = useAppSelector(filteredInvoices);
-
-  const closeForm = () => setIsOpen(false);
-  const openForm = () => setIsOpen(true);
+  const { handleOpen, handleClose, isOpen } = useOpen();
 
   return (
     <Container>
-      <Header invoiceLength={invoices.length} openForm={openForm} />
+      <Header invoiceLength={invoices.length} openForm={handleOpen} />
       <InvoiceList data={invoices} />
-      {isOpen && <CreateInvoice closeForm={closeForm} />}
+      {isOpen && <CreateInvoice closeForm={handleClose} />}
     </Container>
   );
 };

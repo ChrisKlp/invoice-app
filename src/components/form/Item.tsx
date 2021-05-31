@@ -1,5 +1,5 @@
-import { paragraphStyles } from 'components/common';
 import { useFormikContext } from 'formik';
+import { useEffect } from 'react';
 import { TInvoice } from 'store/types';
 import styled from 'styled-components';
 import media from 'styles/mediaQueries';
@@ -20,25 +20,6 @@ const Wrapper = styled.fieldset`
   }
 `;
 
-const TotalWrapper = styled.div`
-  display: grid;
-`;
-
-const Label = styled.label`
-  ${paragraphStyles}
-
-  margin-bottom: 1rem;
-  color: ${({ theme }) => theme.text.invoiceText};
-`;
-
-const Value = styled.span`
-  ${paragraphStyles}
-
-  padding: 1.6rem 0 1.5rem;
-  font-weight: 700;
-  color: ${({ theme }) => theme.text.paragraph};
-`;
-
 const Delete = styled.button`
   place-self: end end;
   padding: 1rem;
@@ -56,26 +37,38 @@ type ItemProps = {
 };
 
 const Item: React.FC<ItemProps> = ({ index, onRemoveClick }) => {
-  const { values }: { values: TInvoice } = useFormikContext();
+  const { values, setFieldValue } = useFormikContext<TInvoice>();
+
+  useEffect(() => {
+    const total = parseFloat(
+      (values.items[index].quantity * values.items[index].price).toFixed(2)
+    );
+    setFieldValue(`items[${index}].total`, total || 0);
+  }, [index, setFieldValue, values.items]);
 
   return (
     <Wrapper>
       <Input label="Item Name" name={`items[${index}].name`} />
-      <Input label="Qty." type="number" name={`items[${index}].quantity`} />
+      <Input
+        label="Qty."
+        type="number"
+        name={`items[${index}].quantity`}
+        noErrorMsg
+      />
       <Input
         label="Price"
         type="number"
         step="5"
         name={`items[${index}].price`}
+        noErrorMsg
       />
-      <TotalWrapper>
-        <Label>Total</Label>
-        <Value>
-          {(values.items[index].quantity * values.items[index].price).toFixed(
-            2
-          )}
-        </Value>
-      </TotalWrapper>
+      <Input
+        label="Total"
+        type="number"
+        name={`items[${index}].total`}
+        disabled
+        noErrorMsg
+      />
       <Delete
         type="button"
         aria-label="Delete ivoice item"

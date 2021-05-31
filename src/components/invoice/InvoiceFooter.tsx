@@ -1,4 +1,5 @@
 import { Container } from 'components/common';
+import { TInvoice } from 'store/types';
 import styled from 'styled-components';
 import InvoiceOptions from './InvoiceOptions';
 
@@ -16,11 +17,25 @@ const Wrapper = styled.div`
   }
 `;
 
-const InvoiceFooter: React.FC = () => {
+type InvoiceFooterProps = {
+  data: TInvoice;
+  openForm: () => void;
+  openModal: () => void;
+};
+
+const InvoiceFooter: React.FC<InvoiceFooterProps> = ({
+  data,
+  openForm,
+  openModal,
+}) => {
   return (
     <Wrapper>
       <Container>
-        <InvoiceOptions />
+        <InvoiceOptions
+          invoiceId={data.id.toUpperCase()}
+          openForm={openForm}
+          openModal={openModal}
+        />
       </Container>
     </Wrapper>
   );

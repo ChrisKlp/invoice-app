@@ -48,13 +48,31 @@ const Field = styled.input<{ faded?: boolean }>`
   &:hover {
     border: 1px solid ${({ theme }) => theme.form.borderActive};
   }
+
+  &:disabled {
+    padding: 1.6rem 1rem 1.5rem;
+    border: 0;
+  }
 `;
 
-const Wrapper = styled.div<{ error?: string }>`
+const Wrapper = styled.div<{
+  error?: string | boolean;
+  faded?: boolean;
+}>`
   display: grid;
   grid-template:
     'label error'
     'input input';
+
+  ${({ faded }) =>
+    faded &&
+    css`
+      opacity: 0.5;
+
+      ${Field} {
+        pointer-events: none;
+      }
+    `};
 
   ${({ error }) =>
     error &&
@@ -73,32 +91,33 @@ const Wrapper = styled.div<{ error?: string }>`
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
-  error?: string;
-  faded?: boolean;
   className?: string;
   name: string;
+  noErrorMsg?: boolean;
+  faded?: boolean;
 }
 
 const Input: React.FC<InputProps> = ({
   label,
   name,
   type,
-  error,
-  faded,
   disabled,
+  faded,
   className,
+  noErrorMsg,
 }) => {
-  const [field, meta, helpers] = useField(name);
+  const [field, meta] = useField(name);
   return (
-    <Wrapper error={error} className={className}>
+    <Wrapper
+      error={meta.touched && meta.error}
+      className={className}
+      faded={faded}
+    >
       <Label>{label}</Label>
-      <ErrorMessage>{error}</ErrorMessage>
-      <Field
-        type={type || 'text'}
-        disabled={disabled}
-        faded={faded}
-        {...field}
-      />
+      {!noErrorMsg && meta.touched && meta.error ? (
+        <ErrorMessage>{meta.error}</ErrorMessage>
+      ) : null}
+      <Field type={type || 'text'} disabled={faded || disabled} {...field} />
     </Wrapper>
   );
 };

@@ -1,5 +1,6 @@
 import { Backdrop, BackLink } from 'components/common';
-import { useEffect } from 'react';
+import useOnClickOutside from 'hooks/useOnClickOutside';
+import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import media from 'styles/mediaQueries';
 
@@ -10,7 +11,6 @@ const Wrapper = styled.div`
   margin-top: 7.2rem;
   height: calc(100vh - 7.2rem);
   width: 100%;
-  max-width: 61.1rem;
   display: grid;
   grid-template-rows: 1fr auto;
   background: ${({ theme }) => theme.invoice.bg};
@@ -20,6 +20,7 @@ const Wrapper = styled.div`
     margin-top: 8rem;
     border-radius: 0 2rem 2rem 0;
     height: calc(100vh - 8rem);
+    max-width: 61.1rem;
   }
 
   @media (${media.lg}) {
@@ -56,6 +57,9 @@ type SlidingSidebarProps = {
 };
 
 const SlidingSidebar: React.FC<SlidingSidebarProps> = ({ children, close }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  useOnClickOutside(ref, close);
+
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => {
@@ -66,7 +70,7 @@ const SlidingSidebar: React.FC<SlidingSidebarProps> = ({ children, close }) => {
   return (
     <>
       <Backdrop />
-      <Wrapper>
+      <Wrapper ref={ref}>
         <StyledContainer>
           <BackButton onClick={close}>
             <BackLink>Go back</BackLink>

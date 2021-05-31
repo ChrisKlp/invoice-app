@@ -27,7 +27,7 @@ export type TInvoice = {
   paymentTerms: number;
   clientName: string;
   clientEmail: string;
-  status: InvoiceStatusEnum | string;
+  status: InvoiceStatusEnum;
   senderAddress: TAddress;
   clientAddress: TAddress;
   items: TInvoiceItem[];

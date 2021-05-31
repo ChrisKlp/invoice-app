@@ -18,6 +18,14 @@ const Heading = styled.h2`
   color: ${({ theme }) => theme.text.subheading};
 `;
 
+const itemValues = {
+  id: generateId(),
+  name: '',
+  quantity: '',
+  price: '',
+  total: '',
+};
+
 type ItemsProps = {};
 
 const Items: React.FC<ItemsProps> = () => {
@@ -28,13 +36,7 @@ const Items: React.FC<ItemsProps> = () => {
         name="items"
         render={({ form, ...helpers }) => {
           const onAddClick = () => {
-            helpers.push({
-              id: generateId(),
-              name: '',
-              quantity: '',
-              price: '',
-              total: '',
-            });
+            helpers.push(itemValues);
           };
 
           const onRemoveClick = (index: number) => {
@@ -42,7 +44,7 @@ const Items: React.FC<ItemsProps> = () => {
           };
           return (
             <>
-              {form.values.items.map((item, index) => (
+              {form.values.items.map((_, index) => (
                 <Item key={index} index={index} onRemoveClick={onRemoveClick} />
               ))}
               <Button type="button" secondary wide onClick={onAddClick}>

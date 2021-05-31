@@ -1,12 +1,25 @@
 import { Container } from 'components/common';
-import { InvoiceBody, InvoiceFooter, InvoiceHeader } from 'components/invoice';
+import {
+  ConfirmModal,
+  InvoiceBody,
+  InvoiceFooter,
+  InvoiceHeader,
+} from 'components/invoice';
 import useMedia from 'hooks/useMedia';
+import useOpen from 'hooks/useOpen';
 import { useParams } from 'react-router-dom';
 import { useAppSelector } from 'store/hooks';
 import media from 'styles/mediaQueries';
+import { EditInvoice } from 'components/form';
 
 const Invoice: React.FC = () => {
   const { id }: { id: string } = useParams();
+  const { handleOpen, handleClose, isOpen } = useOpen();
+  const {
+    handleOpen: openModal,
+    handleClose: closeModal,
+    isOpen: isModalOpen,
+  } = useOpen();
   const isTablet = useMedia(`${media.md}`);
   const invoices = useAppSelector((state) => state.invoices);
 
@@ -18,10 +31,26 @@ const Invoice: React.FC = () => {
   return (
     <>
       <Container>
-        <InvoiceHeader data={invoice} />
+        <InvoiceHeader
+          data={invoice}
+          openForm={handleOpen}
+          openModal={openModal}
+        />
         <InvoiceBody data={invoice} />
       </Container>
-      {!isTablet && <InvoiceFooter />}
+      {isModalOpen && (
+        <ConfirmModal invoiceId={invoice.id} closeModal={closeModal} />
+      )}
+      {isOpen && (
+        <EditInvoice closeForm={handleClose} initialValues={invoice} />
+      )}
+      {!isTablet && (
+        <InvoiceFooter
+          data={invoice}
+          openForm={handleClose}
+          openModal={openModal}
+        />
+      )}
     </>
   );
 };
