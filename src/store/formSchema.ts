@@ -16,7 +16,7 @@ export const initialValues = {
     postCode: '',
     country: '',
   },
-  createdAt: new Date(),
+  createdAt: new Date().toISOString(),
   paymentDue: '',
   paymentTerms: 30,
   description: '',

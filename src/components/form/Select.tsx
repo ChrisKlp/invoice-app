@@ -67,7 +67,10 @@ interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
 
 const Select: React.FC<SelectProps> = ({ label, options, name }) => {
   const { setFieldValue, values } = useFormikContext<TInvoice>();
-  const [optionLabel, setOptionLabel] = useState(values[name]);
+  const initialLabel = options.find(
+    (option) => option.value === values[name]
+  )?.label;
+  const [optionLabel, setOptionLabel] = useState(initialLabel);
   const { isOpen, handleClose, toggle } = useOpen();
   const selectRef = useRef<HTMLDivElement | null>(null);
   useOnClickOutside(selectRef, handleClose);

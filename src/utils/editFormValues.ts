@@ -11,7 +11,7 @@ export default function editFormValues(
 
   const paymentDue = moment(values.createdAt)
     .add(values.paymentTerms, 'days')
-    .format('YYYY-MM-DD');
+    .format();
 
   return {
     ...values,

@@ -1,9 +1,9 @@
-import { forwardRef, useState } from 'react';
-import styled from 'styled-components';
 import iconCalendar from 'assets/icon-calendar.svg';
-import DatePicker from 'react-datepicker';
 import { useFormikContext } from 'formik';
+import { forwardRef, useState } from 'react';
+import DatePicker from 'react-datepicker';
 import { TInvoice } from 'store/types';
+import styled from 'styled-components';
 import { inputStyle, inputTextStyle, labelStyle } from './Input.styled';
 
 const Wrapper = styled.div`
@@ -125,7 +125,8 @@ interface DataPickerProps extends React.InputHTMLAttributes<HTMLInputElement> {
 
 const DataPickerComp: React.FC<DataPickerProps> = ({ label, name }) => {
   const { setFieldValue, values } = useFormikContext<TInvoice>();
-  const [date, setDate] = useState(values[name]);
+  const [date, setDate] = useState(new Date(values[name]));
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const CustomInput = forwardRef((props: any, ref: any) => (
     <Button type="button" onClick={props.onClick} ref={ref}>
       <Text>{props.value}</Text>
