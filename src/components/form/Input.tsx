@@ -1,13 +1,10 @@
-import { paragraphStyles } from 'components/common';
 import styled, { css } from 'styled-components';
 import { useField } from 'formik';
+import { inputStyle, inputTextStyle, labelStyle } from './Input.styled';
 
 const Label = styled.label`
-  ${paragraphStyles}
-
+  ${labelStyle}
   grid-area: label;
-  margin-bottom: 1rem;
-  color: ${({ theme }) => theme.text.invoiceText};
 `;
 
 const ErrorMessage = styled.span`
@@ -21,19 +18,10 @@ const ErrorMessage = styled.span`
 `;
 
 const Field = styled.input<{ faded?: boolean }>`
-  ${paragraphStyles}
+  ${inputStyle}
+  ${inputTextStyle}
 
   grid-area: input;
-  padding: 1.6rem 2rem 1.5rem;
-  width: 100%;
-  border: 1px solid ${({ theme }) => theme.form.border};
-  border-radius: 4px;
-  background: transparent;
-  font-weight: 700;
-  font-family: inherit;
-  color: ${({ theme }) => theme.text.input};
-  outline: none;
-  transition: border 0.2s;
 
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {
@@ -42,11 +30,6 @@ const Field = styled.input<{ faded?: boolean }>`
 
   &[type='number'] {
     -moz-appearance: textfield;
-  }
-
-  &:focus,
-  &:hover {
-    border: 1px solid ${({ theme }) => theme.form.borderActive};
   }
 
   &:disabled {
@@ -95,6 +78,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string;
   noErrorMsg?: boolean;
   faded?: boolean;
+  hideLabel?: boolean;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -105,6 +89,7 @@ const Input: React.FC<InputProps> = ({
   faded,
   className,
   noErrorMsg,
+  hideLabel,
 }) => {
   const [field, meta] = useField(name);
   return (
@@ -113,7 +98,7 @@ const Input: React.FC<InputProps> = ({
       className={className}
       faded={faded}
     >
-      <Label>{label}</Label>
+      {!hideLabel && <Label>{label}</Label>}
       {!noErrorMsg && meta.touched && meta.error ? (
         <ErrorMessage>{meta.error}</ErrorMessage>
       ) : null}

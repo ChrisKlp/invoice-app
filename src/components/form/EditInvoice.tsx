@@ -5,25 +5,9 @@ import { validationSchema } from 'store/formSchema';
 import { useAppDispatch } from 'store/hooks';
 import { editInvoice } from 'store/reducers/invoices';
 import { TInvoice } from 'store/types';
-import styled from 'styled-components';
-import media from 'styles/mediaQueries';
 import editFormValues from 'utils/editFormValues';
 import { SlidingSidebar } from '.';
 import Form from './Form';
-
-const Footer = styled.div`
-  margin: 0 auto;
-  width: 90%;
-  height: 9.1rem;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 0.8rem;
-
-  @media (${media.md}) {
-    height: 11.2rem;
-  }
-`;
 
 type EditInvoiceProps = {
   closeForm: () => void;
@@ -63,12 +47,10 @@ const EditInvoice: React.FC<EditInvoiceProps> = ({
             }
             onSubmit={props.handleSubmit}
           >
-            <Footer>
-              <Button secondary onClick={closeForm}>
-                Cancel
-              </Button>
-              <Button type="submit">Save Changes</Button>
-            </Footer>
+            <Button secondary onClick={closeForm}>
+              Cancel
+            </Button>
+            <Button type="submit">Save Changes</Button>
           </Form>
         )}
       </Formik>

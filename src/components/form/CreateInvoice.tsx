@@ -15,21 +15,9 @@ import generateFormValues from 'utils/generateFormValues';
 import { SlidingSidebar } from '.';
 import Form from './Form';
 
-const Footer = styled.div`
-  margin: 0 auto;
-  width: 90%;
-  height: 9.1rem;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 0.8rem;
-
+const StyledButton = styled(Button)`
   @media (${media.md}) {
-    height: 11.2rem;
-
-    button:first-child {
-      margin-right: auto;
-    }
+    margin-right: auto;
   }
 `;
 
@@ -64,19 +52,17 @@ const CreateInvoice: React.FC<CreateInvoiceProps> = ({ closeForm }) => {
       >
         {(props: FormikProps<TInitialValues>) => (
           <Form heading={<>New Invoice</>} onSubmit={props.handleSubmit}>
-            <Footer>
-              <Button secondary onClick={closeForm}>
-                Discard
-              </Button>
-              <Button
-                type="button"
-                draftType
-                onClick={() => handleDraftSubmit(props.values)}
-              >
-                Save as Draft
-              </Button>
-              <Button type="submit">Save & Send</Button>
-            </Footer>
+            <StyledButton secondary onClick={closeForm}>
+              Discard
+            </StyledButton>
+            <Button
+              type="button"
+              draftType
+              onClick={() => handleDraftSubmit(props.values)}
+            >
+              Save as Draft
+            </Button>
+            <Button type="submit">Save & Send</Button>
           </Form>
         )}
       </Formik>

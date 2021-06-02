@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   height: calc(100vh - 7.2rem);
   width: 100%;
   display: grid;
-  grid-template-rows: 1fr auto;
+  grid-template-rows: auto 1fr;
   background: ${({ theme }) => theme.invoice.bg};
   z-index: 9;
 
@@ -35,21 +35,15 @@ const BackButton = styled.button`
   margin: 3.2rem 5% 2.4rem;
   display: block;
   cursor: pointer;
-`;
-
-const StyledContainer = styled.div`
-  width: 100%;
-  display: grid;
-  grid-template-rows: auto 1fr;
-  overflow: hidden;
 
   @media (${media.md}) {
-    grid-template-rows: auto;
-
-    ${BackButton} {
-      display: none;
-    }
+    display: none;
   }
+`;
+
+const Content = styled.div`
+  display: grid;
+  overflow: hidden;
 `;
 
 type SlidingSidebarProps = {
@@ -71,12 +65,10 @@ const SlidingSidebar: React.FC<SlidingSidebarProps> = ({ children, close }) => {
     <>
       <Backdrop />
       <Wrapper ref={ref}>
-        <StyledContainer>
-          <BackButton onClick={close}>
-            <BackLink>Go back</BackLink>
-          </BackButton>
-          {children}
-        </StyledContainer>
+        <BackButton onClick={close}>
+          <BackLink>Go back</BackLink>
+        </BackButton>
+        <Content>{children}</Content>
       </Wrapper>
     </>
   );

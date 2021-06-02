@@ -3,10 +3,15 @@ import styled from 'styled-components';
 import { Button } from 'components/common';
 import { FieldArray } from 'formik';
 import generateId from 'utils/generateId';
+import media from 'styles/mediaQueries';
 import Item from './Item';
 
 const Wrapper = styled.div`
-  padding: 2.6rem 0;
+  padding-top: 6.6rem;
+
+  @media (${media.md}) {
+    padding-top: 3.4rem;
+  }
 `;
 
 const Heading = styled.h2`

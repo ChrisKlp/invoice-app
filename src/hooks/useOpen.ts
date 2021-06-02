@@ -4,7 +4,7 @@ type TUseOpen = {
   handleOpen: () => void;
   handleClose: () => void;
   isOpen: boolean;
-  trigger: () => void;
+  toggle: () => void;
 };
 
 export default function useOpen(): TUseOpen {
@@ -12,7 +12,7 @@ export default function useOpen(): TUseOpen {
 
   const handleOpen = () => setisOpen(true);
   const handleClose = () => setisOpen(false);
-  const trigger = () => setisOpen((prev) => !prev);
+  const toggle = () => setisOpen((prev) => !prev);
 
-  return { handleOpen, handleClose, trigger, isOpen };
+  return { handleOpen, handleClose, toggle, isOpen };
 }

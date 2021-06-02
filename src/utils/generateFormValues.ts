@@ -11,15 +11,18 @@ export default function generateFormValues(
     values?.items?.reduce((acc, item) => acc + item.quantity * item.price, 0) ||
     0;
 
+  const createdAt = moment(values.createdAt).format();
+
   const paymentDue = moment(values.createdAt)
     .add(values.paymentTerms, 'days')
-    .format('YYYY-MM-DD');
+    .format();
 
   return {
     ...values,
     id: generateId(),
     status: status || InvoiceStatusEnum.PENDING,
     total,
+    createdAt,
     paymentDue,
   };
 }

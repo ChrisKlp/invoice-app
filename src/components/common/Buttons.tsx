@@ -8,7 +8,7 @@ export const Button = styled.button<{
   secondary?: boolean;
   wide?: boolean;
 }>`
-  padding: 1.6rem 2rem;
+  padding: 1.6rem;
   width: ${({ wide }) => (wide ? '100%' : 'initial')};
   font-weight: 700;
   font-size: 1.2rem;

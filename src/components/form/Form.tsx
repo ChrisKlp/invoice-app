@@ -1,13 +1,12 @@
-import { useFormikContext } from 'formik';
-import { TInitialValues } from 'store/formSchema';
 import styled from 'styled-components';
 import media from 'styles/mediaQueries';
+import ErrorMessages from './ErrorMessages';
 import Fields from './Fields';
 import Items from './Items';
 
 const FormWrapper = styled.form`
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: auto 1fr;
   overflow: hidden;
 `;
 
@@ -29,22 +28,38 @@ const Heading = styled.h1`
 `;
 
 const Content = styled.div`
-  padding: 0 5%;
+  padding: 0 5% 8.8rem;
   overflow-y: auto;
-  display: grid;
-  gap: 4rem;
 `;
 
-const ErrorWrapper = styled.div`
-  padding: 1rem 5%;
+const Shadow = styled.div`
+  position: absolute;
+  bottom: 9.1rem;
+  width: 100%;
+  height: 6.4rem;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.0001) 0%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+
+  @media (${media.md}) {
+    bottom: 11.2rem;
+  }
 `;
 
-const ErrorMessage = styled.p`
-  font-weight: 600;
-  font-size: 1rem;
-  line-height: 1.5rem;
-  letter-spacing: -0.021rem;
-  color: ${({ theme }) => theme.form.error};
+const Footer = styled.div`
+  margin: 0 auto;
+  width: 90%;
+  height: 9.1rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.7rem;
+
+  @media (${media.md}) {
+    height: 11.2rem;
+  }
 `;
 
 type FormProps = {
@@ -53,25 +68,16 @@ type FormProps = {
 };
 
 const Form: React.FC<FormProps> = ({ children, heading, onSubmit }) => {
-  const { errors, submitCount } = useFormikContext<TInitialValues>();
   return (
     <FormWrapper onSubmit={onSubmit}>
       <Heading>{heading}</Heading>
       <Content>
         <Fields />
         <Items />
+        <ErrorMessages />
       </Content>
-      <ErrorWrapper>
-        <>
-          {!!submitCount && errors && (
-            <ErrorMessage>- All fields must be added</ErrorMessage>
-          )}
-          {!!submitCount && typeof errors.items === 'string' && (
-            <ErrorMessage>{errors.items}</ErrorMessage>
-          )}
-        </>
-      </ErrorWrapper>
-      {children}
+      <Footer>{children}</Footer>
+      <Shadow />
     </FormWrapper>
   );
 };

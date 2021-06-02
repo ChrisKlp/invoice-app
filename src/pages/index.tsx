@@ -1,6 +1,11 @@
 import Layout from 'components/layout/Layout';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from 'react-router-dom';
 import { store } from 'store/store';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyle from 'styles/GlobalStyles';
@@ -17,7 +22,8 @@ const Root: React.FC = () => {
           <Layout>
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route path="/invoice/:id" component={Invoice} />
+              <Route exact path="/invoice/:id" component={Invoice} />
+              <Redirect to="/" />
             </Switch>
           </Layout>
         </Router>

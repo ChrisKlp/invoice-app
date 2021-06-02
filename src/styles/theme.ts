@@ -102,7 +102,8 @@ const light = {
   },
   form: {
     border: colors.grayish,
-    borderActive: colors.indigo,
+    active: colors.indigo,
+    hover: colors.indigoFaded,
     error: colors.red,
   },
 };

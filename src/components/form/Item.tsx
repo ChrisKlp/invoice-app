@@ -15,8 +15,14 @@ const Wrapper = styled.fieldset`
     grid-column: span 4;
   }
 
-  @media (${media.sm}) {
-    gap: 2.4rem;
+  @media (${media.md}) {
+    grid-template: 1fr / 21rem 6.6rem 10rem auto 2rem;
+    gap: 1.6rem;
+    margin-bottom: 1.8rem;
+
+    > *:first-child {
+      grid-column: 1;
+    }
   }
 `;
 
@@ -38,6 +44,7 @@ type ItemProps = {
 
 const Item: React.FC<ItemProps> = ({ index, onRemoveClick }) => {
   const { values, setFieldValue } = useFormikContext<TInvoice>();
+  const hideLabel = index > 0;
 
   useEffect(() => {
     const total = parseFloat(
@@ -48,12 +55,17 @@ const Item: React.FC<ItemProps> = ({ index, onRemoveClick }) => {
 
   return (
     <Wrapper>
-      <Input label="Item Name" name={`items[${index}].name`} />
+      <Input
+        label="Item Name"
+        name={`items[${index}].name`}
+        hideLabel={hideLabel}
+      />
       <Input
         label="Qty."
         type="number"
         name={`items[${index}].quantity`}
         noErrorMsg
+        hideLabel={hideLabel}
       />
       <Input
         label="Price"
@@ -61,6 +73,7 @@ const Item: React.FC<ItemProps> = ({ index, onRemoveClick }) => {
         step="5"
         name={`items[${index}].price`}
         noErrorMsg
+        hideLabel={hideLabel}
       />
       <Input
         label="Total"
@@ -68,6 +81,7 @@ const Item: React.FC<ItemProps> = ({ index, onRemoveClick }) => {
         name={`items[${index}].total`}
         disabled
         noErrorMsg
+        hideLabel={hideLabel}
       />
       <Delete
         type="button"
