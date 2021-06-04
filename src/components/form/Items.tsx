@@ -20,7 +20,7 @@ const Heading = styled.h2`
   font-size: 1.8rem;
   line-height: 3.2rem;
   letter-spacing: -0.0375rem;
-  color: ${({ theme }) => theme.text.subheading};
+  color: ${({ theme }) => theme.text.paragraph};
 `;
 
 const itemValues = {

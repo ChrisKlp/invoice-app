@@ -14,7 +14,7 @@ const ErrorMessage = styled.span`
   font-size: 1rem;
   line-height: 1.5rem;
   letter-spacing: -0.0208333rem;
-  color: ${({ theme }) => theme.form.error};
+  color: ${({ theme }) => theme.colors.secondary};
 `;
 
 const Field = styled.input<{ faded?: boolean }>`
@@ -64,10 +64,10 @@ const Wrapper = styled.div<{
         display: block;
       }
       ${Label} {
-        color: ${({ theme }) => theme.form.error};
+        color: ${({ theme }) => theme.colors.secondary};
       }
       ${Field} {
-        border: 1px solid ${({ theme }) => theme.form.error};
+        border: 1px solid ${({ theme }) => theme.colors.secondary};
       }
     `};
 `;

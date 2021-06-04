@@ -10,8 +10,8 @@ import InvoiceTable from './InvoiceTable';
 
 const Wrapper = styled.div`
   padding: 2.4rem;
-  background: ${({ theme }) => theme.invoice.bg};
-  box-shadow: 0 1rem 1rem -1rem ${({ theme }) => theme.invoice.shadow};
+  background: ${({ theme }) => theme.body.bg2};
+  box-shadow: 0 1rem 1rem -1rem ${({ theme }) => theme.colors.shadow};
   border-radius: 0.8rem;
 `;
 
@@ -35,7 +35,7 @@ const Id = styled(Heading4)`
   margin-bottom: 0.4rem;
 
   span {
-    color: ${({ theme }) => theme.text.invoiceText};
+    color: ${({ theme }) => theme.colors.hash};
   }
 `;
 

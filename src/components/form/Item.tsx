@@ -33,7 +33,7 @@ const Delete = styled.button`
   height: 4.8rem;
 
   svg:hover {
-    fill: ${({ theme }) => theme.form.error};
+    fill: ${({ theme }) => theme.colors.secondary};
   }
 `;
 

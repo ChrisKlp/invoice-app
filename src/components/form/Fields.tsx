@@ -23,7 +23,7 @@ const Legend = styled.legend`
   ${paragraphStyles}
 
   font-weight: 700;
-  color: ${({ theme }) => theme.text.legend};
+  color: ${({ theme }) => theme.colors.primary};
 `;
 
 const BillFrom = styled.div`

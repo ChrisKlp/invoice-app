@@ -11,7 +11,7 @@ const Text = styled.p`
   font-size: 1rem;
   line-height: 1.5rem;
   letter-spacing: -0.021rem;
-  color: ${({ theme }) => theme.form.error};
+  color: ${({ theme }) => theme.colors.secondary};
 `;
 
 const ErrorMessages: React.FC = () => {

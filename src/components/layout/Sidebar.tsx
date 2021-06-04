@@ -5,6 +5,9 @@ import iconSun from 'assets/icon-sun.svg';
 import avatar from 'assets/image-avatar.jpg';
 import media from 'styles/mediaQueries';
 import { Link } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { useCallback } from 'react';
+import { changeTheme, ThemeEnum } from 'store/reducers/theme';
 
 const Wrapper = styled.aside`
   position: sticky;
@@ -39,7 +42,7 @@ const LogoWrapper = styled(Link)`
   width: 7.2rem;
   height: 7.2rem;
   border-radius: 0 2rem 2rem 0;
-  background: ${({ theme }) => theme.logo.primary};
+  background: ${({ theme }) => theme.colors.primary};
   overflow: hidden;
   z-index: 0;
 
@@ -49,7 +52,7 @@ const LogoWrapper = styled(Link)`
     left: 0;
     width: 100%;
     height: 50%;
-    background: ${({ theme }) => theme.logo.secondary};
+    background: ${({ theme }) => theme.colors.primaryAlt};
     border-radius: 2rem 0 0 0;
     content: '';
     z-index: -1;
@@ -137,13 +140,19 @@ const Avatar = styled.button`
 `;
 
 const Sidebar: React.FC = () => {
+  const theme = useAppSelector((store) => store.theme);
+  const dispatch = useAppDispatch();
+
+  const changeThemeFn = useCallback(() => dispatch(changeTheme()), [dispatch]);
+  const icon = theme === ThemeEnum.LIGHT ? iconMoon : iconSun;
+
   return (
     <Wrapper>
       <LogoWrapper to="/">
         <img src={logo} alt="Logo" />
       </LogoWrapper>
-      <ThemeButton>
-        <img src={iconMoon || iconSun} alt="Theme style Icon" />
+      <ThemeButton onClick={changeThemeFn}>
+        <img src={icon} alt="Theme style Icon" />
       </ThemeButton>
       <Divider />
       <Avatar>

@@ -6,13 +6,13 @@ export const inputStyle = css`
   width: 100%;
   border: 1px solid ${({ theme }) => theme.form.border};
   border-radius: 4px;
-  background: transparent;
+  background: ${({ theme }) => theme.body.bg2};
   outline: none;
   transition: border 0.2s;
 
   &:focus,
   &:hover {
-    border: 1px solid ${({ theme }) => theme.form.active};
+    border: 1px solid ${({ theme }) => theme.colors.primary};
   }
 `;
 
@@ -29,5 +29,5 @@ export const inputTextStyle = css`
   display: block;
   font-family: inherit;
   font-weight: 700;
-  color: ${({ theme }) => theme.text.input};
+  color: ${({ theme }) => theme.text.heading};
 `;

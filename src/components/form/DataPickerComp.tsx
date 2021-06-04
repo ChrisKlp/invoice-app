@@ -15,8 +15,8 @@ const Wrapper = styled.div`
 
   .react-datepicker {
     font-family: 'Spartan', sans-serif;
-    background: ${({ theme }) => theme.invoice.bg};
-    box-shadow: 0 1rem 2rem ${({ theme }) => theme.invoice.shadow};
+    background: ${({ theme }) => theme.dropdown.bg};
+    box-shadow: 0 1rem 2rem ${({ theme }) => theme.dropdown.shadow};
     border-radius: 0.8rem;
     border: none;
 
@@ -29,7 +29,7 @@ const Wrapper = styled.div`
     }
 
     .react-datepicker__navigation-icon::before {
-      border-color: ${({ theme }) => theme.form.active};
+      border-color: ${({ theme }) => theme.colors.primary};
     }
 
     .react-datepicker__navigation--previous {
@@ -84,7 +84,7 @@ const Wrapper = styled.div`
         &.react-datepicker__day--keyboard-selected,
         &.react-datepicker__day--selected {
           border: none;
-          color: ${({ theme }) => theme.form.active};
+          color: ${({ theme }) => theme.colors.primary};
           background-color: transparent;
         }
 
@@ -95,7 +95,7 @@ const Wrapper = styled.div`
         &:hover {
           border-radius: 0;
           background-color: transparent;
-          color: ${({ theme }) => theme.form.hover};
+          color: ${({ theme }) => theme.colors.primaryAlt};
         }
       }
     }

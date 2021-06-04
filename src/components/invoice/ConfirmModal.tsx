@@ -15,8 +15,8 @@ import media from 'styles/mediaQueries';
 const Wrapper = styled.div`
   padding: 3.2rem;
   max-width: 48rem;
-  background: ${({ theme }) => theme.invoice.bg};
-  box-shadow: 1rem 1rem -1rem ${({ theme }) => theme.invoice.shadow};
+  background: ${({ theme }) => theme.body.bg2};
+  box-shadow: 1rem 1rem -1rem ${({ theme }) => theme.colors.shadow};
   border-radius: 0.8rem;
 
   @media (${media.md}) {

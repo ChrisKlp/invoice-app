@@ -31,11 +31,11 @@ const Input = styled.span`
   }
 
   ${Wrapper}:hover & {
-    border: 1px solid ${({ theme }) => theme.checkbox.active};
+    border: 1px solid ${({ theme }) => theme.colors.primary};
   }
 
   ${Wrapper} input:checked + & {
-    background-color: ${({ theme }) => theme.checkbox.active};
+    background-color: ${({ theme }) => theme.colors.primary};
 
     img {
       opacity: 1;

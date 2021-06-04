@@ -13,7 +13,7 @@ const Wrapper = styled.div`
   width: 100%;
   display: grid;
   grid-template-rows: auto 1fr;
-  background: ${({ theme }) => theme.invoice.bg};
+  background: ${({ theme }) => theme.form.bg};
   z-index: 9;
 
   @media (${media.md}) {

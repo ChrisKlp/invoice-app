@@ -5,7 +5,7 @@ const colors = {
   indigoDark: '#252945',
   indigoDarker: '#1E2139',
   grayish: '#DFE3FA',
-  // grayishFaded: '#DFE3FA10',
+  grayishFaded: 'rgba(223, 227, 250, 0.06)',
   grayishLight: '#F9FAFE',
   grayishSlick: '#888EB0',
   grayishSky: '#7E88C3',
@@ -21,55 +21,16 @@ const colors = {
   light: '#F8F8FB',
   dark: '#141625',
   divider: '#494E6E',
-  shadow: 'rgba(72, 84, 159, 0.25)',
-  shadow2: 'rgba(72, 84, 159, 0.10)',
-  // light_01: '#00000001',
-  // light_10: '#00000010',
   white: '#FFFFFF',
 };
 
-const light = {
-  body: {
-    bg: colors.light,
-  },
-  text: {
-    heading: colors.grayishDark,
-    subheading: colors.grayishSlick,
-    paragraph: colors.grayishSlick,
-    invoiceText: colors.grayishSky,
-    invoiceTotal: colors.white,
-    input: colors.grayishDark,
-    legend: colors.indigo,
-  },
-  btn: {
-    primary: {
-      bg: colors.indigo,
-      hover: colors.indigoFaded,
-      color: colors.white,
-    },
-    secondary: {
-      bg: colors.grayishLight,
-      hover: colors.grayish,
-      color: colors.grayishSky,
-    },
-    delete: {
-      bg: colors.red,
-      hover: colors.redFaded,
-      color: colors.white,
-    },
-    draft: {
-      bg: colors.dim,
-      hover: colors.grayishDark,
-      color: colors.grayishSlick,
-    },
-  },
-  sidebar: {
-    bg: colors.dim,
-    divider: colors.divider,
-  },
-  logo: {
+const base = {
+  colors: {
     primary: colors.indigo,
-    secondary: colors.indigoFaded,
+    primaryAlt: colors.indigoFaded,
+    secondary: colors.red,
+    hash: colors.grayishSky,
+    shadow: 'rgba(72, 84, 159, 0.10)',
   },
   status: {
     paid: {
@@ -85,30 +46,132 @@ const light = {
       color: colors.dim,
     },
   },
-  invoice: {
-    bg: colors.white,
-    bg2: colors.grayishLight,
-    bg3: colors.dim,
-    shadow: colors.shadow2,
-    hover: colors.indigoFaded,
-  },
-  dropdown: {
-    bg: colors.white,
-    shadow: colors.shadow,
-  },
-  checkbox: {
-    bg: colors.grayish,
-    active: colors.indigo,
-  },
-  form: {
-    border: colors.grayish,
-    active: colors.indigo,
-    hover: colors.indigoFaded,
-    error: colors.red,
+  btn: {
+    primary: {
+      bg: colors.indigo,
+      hover: colors.indigoFaded,
+      color: colors.white,
+    },
+    delete: {
+      bg: colors.red,
+      hover: colors.redFaded,
+      color: colors.white,
+    },
   },
 };
 
-const theme = light;
+const themeLight = {
+  ...base,
+  body: {
+    bg: colors.light,
+    bg2: colors.white,
+  },
+  sidebar: {
+    bg: colors.dim,
+    divider: colors.divider,
+  },
+  text: {
+    heading: colors.grayishDark,
+    paragraph: colors.grayishSlick,
+    invoiceText: colors.grayishSky,
+    invoiceTotal: colors.white,
+  },
+  btn: {
+    ...base.btn,
+    secondary: {
+      bg: colors.grayishLight,
+      hover: colors.grayish,
+      color: colors.grayishSky,
+    },
+    draft: {
+      bg: colors.dim,
+      hover: colors.grayishDark,
+      color: colors.grayishSlick,
+    },
+  },
+  status: {
+    ...base.status,
+    draft: {
+      bg: colors.dimFaded,
+      color: colors.dim,
+    },
+  },
+  invoice: {
+    tableBg: colors.grayishLight,
+    tableTotalBg: colors.dim,
+  },
+  dropdown: {
+    bg: colors.white,
+    shadow: 'rgba(72, 84, 159, 0.25)',
+    divider: colors.grayish,
+  },
+  checkbox: {
+    bg: colors.grayish,
+  },
+  form: {
+    border: colors.grayish,
+    bg: colors.white,
+  },
+};
 
-export type ThemeType = typeof theme;
+const themeDark = {
+  ...base,
+  body: {
+    bg: colors.dark,
+    bg2: colors.indigoDarker,
+  },
+  text: {
+    heading: colors.white,
+    paragraph: colors.white,
+    invoiceText: colors.grayish,
+    invoiceTotal: colors.white,
+  },
+  sidebar: {
+    bg: colors.indigoDarker,
+    divider: colors.divider,
+  },
+  btn: {
+    ...base.btn,
+    secondary: {
+      bg: colors.indigoDark,
+      hover: colors.white,
+      color: colors.grayishSky,
+    },
+    draft: {
+      bg: colors.dim,
+      hover: colors.indigoDarker,
+      color: colors.grayish,
+    },
+  },
+  status: {
+    ...base.status,
+    draft: {
+      bg: colors.grayishFaded,
+      color: colors.grayish,
+    },
+  },
+  invoice: {
+    tableBg: colors.indigoDark,
+    tableTotalBg: colors.grayishDark,
+  },
+  dropdown: {
+    bg: colors.indigoDark,
+    shadow: 'rgba(0, 0, 0, 0.25)',
+    divider: colors.indigoDarker,
+  },
+  checkbox: {
+    bg: colors.indigoDarker,
+  },
+  form: {
+    border: colors.indigoDark,
+    bg: colors.dark,
+  },
+};
+
+const theme = {
+  themeLight,
+  themeDark,
+};
+
 export default theme;
+export type ThemeType = typeof themeLight;

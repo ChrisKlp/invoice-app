@@ -15,7 +15,7 @@ const TextLight = styled(Text)`
 
 const Wrapper = styled.div`
   padding: 2.4rem;
-  background: ${({ theme }) => theme.invoice.bg2};
+  background: ${({ theme }) => theme.invoice.tableBg};
   border-radius: 8px 8px 0px 0px;
 
   @media (${media.md}) {
@@ -97,7 +97,7 @@ const GrandTotal = styled.div`
   justify-content: space-between;
   gap: 1rem;
   padding: 2.4rem;
-  background: ${({ theme }) => theme.invoice.bg3};
+  background: ${({ theme }) => theme.invoice.tableTotalBg};
   border-radius: 0px 0px 8px 8px;
   color: white;
 
@@ -158,7 +158,7 @@ const InvoiceTable: React.FC<InvoiceTableProps> = ({ items, total }) => {
         </ItemList>
       </Wrapper>
       <GrandTotal>
-        <Paragraph>Grand Total</Paragraph>
+        <Paragraph>Amount Due</Paragraph>
         <TotalAmount>{total}</TotalAmount>
       </GrandTotal>
     </>

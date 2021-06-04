@@ -13,15 +13,15 @@ const Wrapper = styled(Link)`
     'id client' 1fr
     'date status' 2.4rem
     'total status';
-  background: ${({ theme }) => theme.invoice.bg};
-  box-shadow: 0 1rem 1rem -1rem ${({ theme }) => theme.invoice.shadow};
+  background: ${({ theme }) => theme.body.bg2};
+  box-shadow: 0 1rem 1rem -1rem ${({ theme }) => theme.colors.shadow};
   border-radius: 0.8rem;
   border: 1px solid transparent;
   cursor: pointer;
   transition: border 0.2s;
 
   &:hover {
-    border: 1px solid ${({ theme }) => theme.invoice.hover};
+    border: 1px solid ${({ theme }) => theme.colors.primaryAlt};
   }
 
   @media (${media.md}) {
@@ -42,7 +42,7 @@ const Id = styled(Heading4)`
   grid-area: id;
 
   span {
-    color: ${({ theme }) => theme.text.invoiceText};
+    color: ${({ theme }) => theme.colors.hash};
   }
 `;
 

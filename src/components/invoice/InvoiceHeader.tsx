@@ -23,8 +23,8 @@ const Header = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 2.4rem;
-  background: ${({ theme }) => theme.invoice.bg};
-  box-shadow: 0 1rem 1rem -1rem ${({ theme }) => theme.invoice.shadow};
+  background: ${({ theme }) => theme.body.bg2};
+  box-shadow: 0 1rem 1rem -1rem ${({ theme }) => theme.colors.shadow};
   border-radius: 0.8rem;
 `;
 

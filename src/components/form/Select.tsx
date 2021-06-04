@@ -28,7 +28,7 @@ const Text = styled.span`
 
 const Option = styled(Text)`
   padding: 1.6rem 2rem 1.6rem;
-  border-bottom: 1px solid ${({ theme }) => theme.form.border};
+  border-bottom: 1px solid ${({ theme }) => theme.dropdown.divider};
   cursor: pointer;
 
   &:last-child {
@@ -36,7 +36,7 @@ const Option = styled(Text)`
   }
 
   &:hover {
-    color: ${({ theme }) => theme.form.active};
+    color: ${({ theme }) => theme.colors.primary};
   }
 `;
 
