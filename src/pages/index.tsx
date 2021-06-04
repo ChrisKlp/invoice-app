@@ -1,4 +1,5 @@
 import Layout from 'components/layout/Layout';
+import useTheme from 'hooks/useTheme';
 import {
   BrowserRouter as Router,
   Redirect,
@@ -14,6 +15,7 @@ import Invoice from './Invoice';
 
 const Root: React.FC = () => {
   const themeStyle = useAppSelector((state) => state.theme);
+  useTheme();
 
   return (
     <ThemeProvider theme={theme[themeStyle]}>
