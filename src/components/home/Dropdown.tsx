@@ -1,10 +1,10 @@
 import { PayloadAction } from '@reduxjs/toolkit';
-import styled from 'styled-components';
-import { Checkbox, Paragraph } from 'components/common';
+import iconArrowDown from 'assets/icon-arrow-down.svg';
+import { Checkbox, paragraphStyles } from 'components/common';
 import useOnClickOutside from 'hooks/useOnClickOutside';
 import { useRef, useState } from 'react';
+import styled from 'styled-components';
 import media from 'styles/mediaQueries';
-import iconArrowDown from 'assets/icon-arrow-down.svg';
 
 const Wrapper = styled.div`
   position: relative;
@@ -22,7 +22,8 @@ const Header = styled.button`
   background: none;
 `;
 
-const Label = styled(Paragraph)`
+const Label = styled.span`
+  ${paragraphStyles}
   font-weight: 700;
   color: ${({ theme }) => theme.text.heading};
 
