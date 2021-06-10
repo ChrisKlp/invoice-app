@@ -11,7 +11,7 @@ import { createInvoice } from 'store/reducers/invoices';
 import { InvoiceStatusEnum, TInvoice } from 'store/types';
 import styled from 'styled-components';
 import media from 'styles/mediaQueries';
-import generateFormValues from 'utils/generateFormValues';
+import formatFormValues from 'utils/formatFormValues';
 import { SlidingSidebar } from '.';
 import Form from './Form';
 
@@ -34,12 +34,12 @@ const CreateInvoice: React.FC<CreateInvoiceProps> = ({ closeForm }) => {
   );
 
   const onSubmit = (values: TInitialValues) => {
-    createNewInvoice(generateFormValues(values));
+    createNewInvoice(formatFormValues(values));
     closeForm();
   };
 
   const handleDraftSubmit = (values: TInitialValues) => {
-    createNewInvoice(generateFormValues(values, InvoiceStatusEnum.DRAFT));
+    createNewInvoice(formatFormValues(values, InvoiceStatusEnum.DRAFT));
     closeForm();
   };
 

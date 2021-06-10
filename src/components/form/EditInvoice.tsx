@@ -5,7 +5,7 @@ import { validationSchema } from 'store/formSchema';
 import { useAppDispatch } from 'store/hooks';
 import { editInvoice } from 'store/reducers/invoices';
 import { TInvoice } from 'store/types';
-import editFormValues from 'utils/editFormValues';
+import formatEditFormValues from 'utils/formatEditFormValues';
 import { SlidingSidebar } from '.';
 import Form from './Form';
 
@@ -26,7 +26,7 @@ const EditInvoice: React.FC<EditInvoiceProps> = ({
   );
 
   const onSubmit = (values: TInvoice) => {
-    editInvoiceFn(editFormValues(values));
+    editInvoiceFn(formatEditFormValues(values));
     closeForm();
   };
 
