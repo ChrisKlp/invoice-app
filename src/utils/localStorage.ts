@@ -17,6 +17,6 @@ export function saveState(invoices: TInvoice[]): void {
     const serializedState = JSON.stringify(invoices);
     localStorage.setItem('invoices', serializedState);
   } catch (err) {
-    console.error(err);
+    //
   }
 }
